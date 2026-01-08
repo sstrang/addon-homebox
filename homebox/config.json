@@ -1,0 +1,30 @@
+{
+  "name": "Homebox",
+  "description": "Homebox is the inventory and organization system built for the Home User. Track items, locations, labels, and manage your home inventory with ease.",
+  "version": "0.22.3",
+  "slug": "homebox",
+  "init": false,
+  "arch": ["aarch64", "amd64", "armv7"],
+  "ports": {
+    "7745/tcp": 7745
+  },
+  "map": ["config:rw", "share:rw"],
+  "ports_description": {
+    "7745/tcp": "Homebox web interface"
+  },
+  "panel_icon": "mdi:package-variant",
+  "panel_title": "Homebox",
+  "options": {
+    "log_level": "info",
+    "timezone": "UTC"
+  },
+  "schema": {
+    "log_level": "list(trace|debug|info|warning|error|fatal)?",
+    "timezone": "str"
+  },
+  "environment": {
+    "TZ": "{timezone}",
+    "HBOX_OPTIONS_TRUST_PROXY": "true"
+  },
+  "image": "ghcr.io/sysadminsmedia/homebox"
+}

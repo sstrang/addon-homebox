@@ -1,0 +1,4 @@
+name: "Home Assistant Add-on: Homebox"
+description: "Home Assistant add-on repository for Homebox"
+render_readme: true
+maintainer: "sstrang"

@@ -1,0 +1,22 @@
+#!/bin/bash
+# Pre-commit hook to validate JSON files
+
+# Find all JSON files staged for commit
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.json$')
+
+if [ -z "$FILES" ]; then
+    exit 0
+fi
+
+# Validate each JSON file
+for FILE in $FILES; do
+    if ! python3 -m json.tool "$FILE" > /dev/null 2>&1; then
+        echo "❌ Invalid JSON in: $FILE"
+        echo "Please fix the JSON syntax before committing."
+        python3 -m json.tool "$FILE" 2>&1 | head -5
+        exit 1
+    fi
+done
+
+echo "✅ All JSON files are valid"
+exit 0
